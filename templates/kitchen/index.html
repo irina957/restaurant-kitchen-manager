@@ -1,11 +1,16 @@
-<html>
-<h1>
-  Welcome to the Kitchen
-</h1>
-<ul>
-  <li>Number of DishTypes: {{ num_dish_types }}</li>
-  <li>Number of Dishes: {{ num_dishes }}</li>
-  <li>Number of Cooks: {{ num_cooks }}</li>
-
-</ul>
-</html>
+{% extends "base.html" %}
+{% block title %}
+  <title>Home page</title>
+{% endblock %}
+{% block content %}
+  <h1>Restaurant Manager Home</h1>
+  <p>
+    Welcome to the Kitchen!
+  </p>
+  <h3>Kitchen content</h3>
+  <ul>
+    <li>Number of DishTypes: {{ num_dish_types }}</li>
+    <li>Number of Dishes: {{ num_dishes }}</li>
+    <li>Number of Cooks: {{ num_cooks }}</li>
+  </ul>
+{% endblock %}git

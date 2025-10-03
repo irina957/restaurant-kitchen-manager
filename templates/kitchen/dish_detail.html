@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Dish: {{ dish.name }}</h1>
+  <p><strong>Description: </strong>{{ dish.description }}</p>
+  <p><strong>Price: </strong>{{ dish.price }}</p>
+  <p><strong>Dish type: </strong>{{ dish.dish_type }}</p>
+  <div class="ml-3">
+    <h3>Cooks:</h3>
+    {% for cook in dish.cooks.all %}
+      <hr>
+      <p class="text-muted">{{ cook.id }}</p>
+      <p>{{ cook.first_name }} {{ cook.last_name }}</p>
+    {% empty %}
+      <p>No cooks found</p>
+    {% endfor %}
+
+  </div>
+
+
+{% endblock %}

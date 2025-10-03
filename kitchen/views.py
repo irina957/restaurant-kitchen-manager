@@ -22,7 +22,17 @@ class DishTypeListView(generic.ListView):
 
 class DishListView(generic.ListView):
     model = Dish
+    queryset = Dish.objects.select_related("dish_type")
 
 
 class CookListView(generic.ListView):
     model = Cook
+
+
+class DishDetailView(generic.DetailView):
+    model = Dish
+
+
+class CookDetailView(generic.DetailView):
+    model = Cook
+    queryset = Cook.objects.prefetch_related("cooked_dishes")

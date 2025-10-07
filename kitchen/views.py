@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from .models import Dish, DishType, Cook
@@ -44,3 +45,17 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
 class CookDetailView(LoginRequiredMixin,generic.DetailView):
     model = Cook
     queryset = Cook.objects.prefetch_related("cooked_dishes")
+
+
+class DishCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Dish
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen:dish-list")
+    template_name = "kitchen/dish_form.html"
+
+
+class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = DishType
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen:dish-type-list")
+    template_name = "kitchen/dish_type_form.html"

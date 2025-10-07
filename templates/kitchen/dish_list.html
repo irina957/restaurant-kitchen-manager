@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Dish List</h1>
+  <h1>Dish List <a style="float:right" href="{% url 'kitchen:dish-create' %}">+</a></h1>
   {% if dish_list %}
     <ul>
       {% for dish in dish_list %}

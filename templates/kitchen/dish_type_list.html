@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Dish Type List</h1>
+  <h1>Dish Type List <a style="float:right" href="{% url 'kitchen:dish-type-create' %}">+</a></h1>
   {% if dish_type_list %}
     <ul>
       {% for dish_type in dish_type_list %}
-        <li><a href="#">{{ dish_type.name }}</a></li>
+        <li>{{ dish_type.name }}</li>
       {% endfor %}
     </ul>
   {% else %}

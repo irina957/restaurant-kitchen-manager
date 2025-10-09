@@ -13,8 +13,10 @@
     {% empty %}
       <p>No cooks found</p>
     {% endfor %}
-
   </div>
-
+<div class="mt-3">
+      <a href="{% url 'kitchen:dish-update' dish.id %}" class="btn btn-primary">Update</a>
+      <a href="{% url 'kitchen:dish-delete' dish.id %}" class="btn btn-danger">Delete</a>
+    </div>
 
 {% endblock %}

@@ -2,11 +2,29 @@
 {% block content %}
   <h1>Dish List <a style="float:right" href="{% url 'kitchen:dish-create' %}">+</a></h1>
   {% if dish_list %}
-    <ul>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>DishType</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
       {% for dish in dish_list %}
-        <li><a href="{{ dish.get_absolute_url }}">{{ dish.name }} ({{ dish.price }}, {{ dish.dish_type }})</a></li>
+        <tr>
+          <td>{{ dish.id }}</td>
+          <td>{{ dish.name }}</td>
+          <td>{{ dish.price }}</td>
+          <td>{{ dish.dish_type }}</td>
+        <td><a href="{% url 'kitchen:dish-update' dish.id %}">Update</a></td>
+        <td><a href="{% url 'kitchen:dish-delete' dish.id %}">Delete</a></td>
+        </tr>
       {% endfor %}
-    </ul>
+    </table>
   {% else %}
     <p>There are no Dishes</p>
   {% endif %}

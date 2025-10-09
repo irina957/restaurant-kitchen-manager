@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Delete Dish</h1>
+  <p>Are you sure you want to delete dish: {{ dish.name }}</p>
+  <form action="" method="post">
+  {% csrf_token %}
+  <input type="submit" value="Delete" class="btn btn-danger">
+  {% if request.META.HTTP_REFERER %}
+    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-secondary">Cancel</a>
+  {% else %}
+    <a href="{% url 'kitchen:dish-list' %}" class="btn btn-secondary">Cancel</a>
+  {% endif %}
+  </form>
+{% endblock %}

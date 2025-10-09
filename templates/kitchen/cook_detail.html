@@ -2,13 +2,19 @@
 {% block content %}
   <h1>Cook: {{ cook.username }}</h1>
   <p>{{ cook.first_name }} {{ cook.last_name }}</p>
-  <div class="ml-3">
-    <h3>Dishes:</h3>
-    <hr>
-    {% for dish in cook.cooked_dishes.all %}
-      <p>{{ dish.name }}</p>
-    {% empty %}
-      <p>No dishes found</p>
-    {% endfor %}
+  <p><strong>Experience:</strong> {{ cook.years_of_experience }} years</p>
+  <h3>Dishes:</h3>
+  {% if cook.cooked_dishes.all %}
+    <ul class="list-group mb-3">
+      {% for dish in cook.cooked_dishes.all %}
+        <li class="list-group-item">{{ dish.name }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted">No dishes found</p>
+  {% endif %}
+  <div class="mt-3">
+    <a href="{% url 'kitchen:cook-experience-update' cook.id %}" class="btn btn-primary">Update</a>
+    <a href="{% url 'kitchen:cook-delete' cook.id %}" class="btn btn-danger">Delete</a>
   </div>
 {% endblock %}

@@ -6,6 +6,7 @@
   <p><strong>Dish type: </strong>{{ dish.dish_type }}</p>
   <div class="ml-3">
     <h3>Cooks:</h3>
+
     {% for cook in dish.cooks.all %}
       <hr>
       <p class="text-muted">{{ cook.id }}</p>
@@ -14,9 +15,20 @@
       <p>No cooks found</p>
     {% endfor %}
   </div>
-<div class="mt-3">
-      <a href="{% url 'kitchen:dish-update' dish.id %}" class="btn btn-primary">Update</a>
-      <a href="{% url 'kitchen:dish-delete' dish.id %}" class="btn btn-danger">Delete</a>
-    </div>
+  {% if user in dish.cooks.all %}
+    <form action="{% url 'kitchen:remove-me' dish.pk %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Delete me from this dish</button>
+    </form>
+  {% else %}
+    <form action="{% url 'kitchen:assign-me' dish.pk %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Assign me to this dish</button>
+    </form>
+  {% endif %}
+  <div class="mt-3">
+    <a href="{% url 'kitchen:dish-update' dish.id %}" class="btn btn-primary">Update</a>
+    <a href="{% url 'kitchen:dish-delete' dish.id %}" class="btn btn-danger">Delete</a>
+  </div>
 
 {% endblock %}

@@ -1,15 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Cook List <a style="float: right" href="{% url 'kitchen:cook-create' %}">+</a></h1>
+  <h1>Cook List <a class="btn btn-primary" style="float: right" href="{% url 'kitchen:cook-create' %}">+</a></h1>
   {% if cook_list %}
-    <ul>
-      {% for cook in cook_list %}
-        <li><a href="{{ cook.get_absolute_url }}">{{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})</a>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Years of experience</th>
+      </tr>
+    {% for cook in cook_list %}
+      <tr>
+        <td><a href="{{ cook.get_absolute_url }}">{{ cook.id }}</a></td>
+        <td>{{ cook.username }}
           {% if cook == request.user %}
             (Me)
-          {% endif %}</li>
-      {% endfor %}
-    </ul>
+        {% endif %}</td>
+        <td>{{ cook.first_name }}</td>
+        <td>{{ cook.last_name }}</td>
+        <td>{{ cook.years_of_experience }}</td>
+      </tr>
+    {% endfor %}
+    </table>
   {% else %}
     <p class="text-muted mt-3">There are no Cooks yet</p>
   {% endif %}

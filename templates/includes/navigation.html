@@ -1,0 +1,141 @@
+<!-- Navbar -->
+<div class="container position-sticky z-index-sticky top-0">
+  <div class="row">
+    <div class="col-12">
+      <nav
+          class="navbar navbar-expand-lg blur border-radius-xl mt-4 top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+        <div class="container-fluid px-0">
+          <a class="navbar-brand font-weight-bolder ms-sm-3" href="/">
+            Restaurant Kitchen Manager
+          </a>
+          <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#navigation"
+                  aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon mt-2">
+              <span class="navbar-toggler-bar bar1"></span>
+              <span class="navbar-toggler-bar bar2"></span>
+              <span class="navbar-toggler-bar bar3"></span>
+            </span>
+          </button>
+
+          <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
+            <ul class="navbar-nav ms-auto">
+
+              <!-- Home -->
+              <li class="nav-item">
+                <a class="nav-link" href="/kitchen/index.html">
+                  <i class="material-icons opacity-6 me-2 text-md">restaurant</i>
+                  Home
+                </a>
+              </li>
+
+              <!-- Kitchen Dropdown -->
+              <li class="nav-item dropdown dropdown-hover mx-2">
+                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuKitchen"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="material-icons opacity-6 me-2 text-md">kitchen</i>
+                  Kitchen
+                  <img src="{{ ASSETS_ROOT }}/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-auto ms-md-2">
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive p-3 border-radius-lg mt-0 mt-lg-3"
+                    aria-labelledby="dropdownMenuKitchen">
+
+                  <!-- Dish Types -->
+                  <li class="nav-item dropdown dropdown-hover dropdown-subitem">
+                    <a class="dropdown-item py-2 ps-3 border-radius-md" href="#">
+                      <div class="d-flex justify-content-between align-items-center w-100">
+                        <div>
+                          <h6 class="dropdown-header text-dark font-weight-bolder p-0 mb-0">Dish Types</h6>
+                          <span class="text-sm">See all dish types</span>
+                        </div>
+                        <img src="{{ ASSETS_ROOT }}/img/down-arrow.svg" alt="down-arrow" class="arrow">
+                      </div>
+                    </a>
+                    <div class="dropdown-menu mt-0 py-1 px-2">
+                      <a class="dropdown-item ps-3 border-radius-md mb-1" href="/ui-sections-hero-sections.html">Create
+                        dish type</a>
+                    </div>
+                  </li>
+
+                  <!-- Dishes -->
+                  <li class="nav-item dropdown dropdown-hover dropdown-subitem">
+                    <a class="dropdown-item py-2 ps-3 border-radius-md" href="#">
+                      <div class="d-flex justify-content-between align-items-center w-100">
+                        <div>
+                          <h6 class="dropdown-header text-dark font-weight-bolder p-0 mb-0">Dishes</h6>
+                          <span class="text-sm">See all dishes</span>
+                        </div>
+                        <img src="{{ ASSETS_ROOT }}/img/down-arrow.svg" alt="down-arrow" class="arrow">
+                      </div>
+                    </a>
+                    <div class="dropdown-menu mt-0 py-1 px-2">
+                      <a class="dropdown-item ps-3 border-radius-md mb-1" href="/ui-navigation-navbars.html">Create
+                        dish</a>
+                    </div>
+                  </li>
+
+                  <!-- Cooks -->
+                  <li class="nav-item dropdown dropdown-hover dropdown-subitem">
+                    <a class="dropdown-item py-2 ps-3 border-radius-md" href="#">
+                      <div class="d-flex justify-content-between align-items-center w-100">
+                        <div>
+                          <h6 class="dropdown-header text-dark font-weight-bolder p-0 mb-0">Cooks</h6>
+                          <span class="text-sm">See all cooks</span>
+                        </div>
+                        <img src="{{ ASSETS_ROOT }}/img/down-arrow.svg" alt="down-arrow" class="arrow">
+                      </div>
+                    </a>
+                    <div class="dropdown-menu mt-0 py-1 px-2">
+                      <a class="dropdown-item ps-3 border-radius-md mb-1" href="/ui-input-inputs.html">Create cook</a>
+                    </div>
+                  </li>
+
+                </ul>
+              </li> <!-- Закрытие Kitchen Dropdown -->
+
+              <!-- Help Dropdown -->
+              <li class="nav-item dropdown dropdown-hover mx-2">
+                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuHelp"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="material-icons opacity-6 me-2 text-md">article</i>
+                  Help
+                  <img src="{{ ASSETS_ROOT }}/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-auto ms-md-2">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end p-3 border-radius-lg" aria-labelledby="dropdownMenuHelp">
+                  <li class="nav-item">
+                    <a class="dropdown-item" target="_blank" href="https://appseed.us/support">
+                      Support
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Logout (POST) -->
+              {% if request.user.is_authenticated %}
+                <li class="nav-item ms-lg-3 d-flex align-items-center me-2">
+    <span class="text-sm" style="color: #5C2F0C; opacity: 0.8;">
+      User:
+      <a href="{% url 'kitchen:cook-detail' pk=user.id %}" class="font-weight-bold ms-1" style="color: #5C2F0C;">
+        {{ user.username }}
+      </a>
+    </span>
+                </li>
+                <li class="nav-item ms-lg-3">
+                  <form method="post" action="{% url 'logout' %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm mb-0 d-flex align-items-center"
+                            style="border: none; background-color: #5C2F0C; color: white;">
+                      <i class="fa fa-sign-out me-1"></i>
+                      <span class="font-weight-bold">Logout</span>
+                    </button>
+                  </form>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

@@ -1,20 +1,89 @@
-{% extends "base.html" %}
+{% extends "layouts/base.html" %}
+
+{% block title %}Cook: {{ cook.username }}{% endblock %}
+
+{% block stylesheets %}
+<style>
+.card {
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  background-color: #f7f7f7;
+}
+
+.card-header h4 {
+  color: #8B6F5A;
+  font-weight: 700;
+}
+
+.list-group-item {
+  font-size: 0.95rem;
+}
+
+.btn-update {
+  background-color: #8B6F5A;
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-update:hover {
+  background-color: #A48268;
+}
+
+.btn-delete {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-delete:hover {
+  background-color: #c9302c;
+}
+</style>
+{% endblock %}
+
 {% block content %}
-  <h1>Cook: {{ cook.username }}</h1>
-  <p>{{ cook.first_name }} {{ cook.last_name }}</p>
-  <p><strong>Experience:</strong> {{ cook.years_of_experience }} years</p>
-  <h3>Dishes:</h3>
-  {% if cook.cooked_dishes.all %}
-    <ul class="list-group mb-3">
-      {% for dish in cook.cooked_dishes.all %}
-        <li class="list-group-item">{{ dish.name }}</li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p class="text-muted">No dishes found</p>
-  {% endif %}
-  <div class="mt-3">
-    <a href="{% url 'kitchen:cook-experience-update' cook.id %}" class="btn btn-primary">Update</a>
-    <a href="{% url 'kitchen:cook-delete' cook.id %}" class="btn btn-danger">Delete</a>
+
+{% include "includes/navigation.html" %}
+
+<div class="container py-5 mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+
+      <div class="card">
+        <div class="card-header px-4 py-3 d-flex justify-content-between align-items-center">
+          <h4 class="mb-0">Cook: {{ cook.username }}</h4>
+        </div>
+
+        <div class="card-body px-4 py-4">
+          <p><strong>First Name:</strong> {{ cook.first_name }}</p>
+          <p><strong>Last Name:</strong> {{ cook.last_name }}</p>
+          <p><strong>Experience:</strong> {{ cook.years_of_experience }} years</p>
+
+          <h5>Dishes:</h5>
+          {% if cook.cooked_dishes.all %}
+            <ul class="list-group mb-3">
+              {% for dish in cook.cooked_dishes.all %}
+                <li class="list-group-item">{{ dish.name }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted">No dishes found</p>
+          {% endif %}
+
+          <div class="mt-3 d-flex gap-2">
+            <a href="{% url 'kitchen:cook-experience-update' cook.id %}" class="btn btn-update">Update</a>
+            <a href="{% url 'kitchen:cook-delete' cook.id %}" class="btn btn-delete">Delete</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
+</div>
+
 {% endblock %}

@@ -1,0 +1,106 @@
+{% extends "layouts/base-fullscreen.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block stylesheets %}
+<style>
+.bg-gradient-brown {
+  background: linear-gradient(45deg, #5C4033, #8B4513) !important;
+}
+.shadow-brown {
+  box-shadow: 0 4px 20px 0 rgba(92, 64, 51, 0.4) !important;
+}
+.btn-brown {
+  background: linear-gradient(45deg, #5C4033, #8B4513) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.input-group.input-group-outline .form-label {
+  display: none; 
+}
+
+.input-group.input-group-outline .form-control::placeholder {
+  color: transparent;
+}
+
+.input-group.input-group-outline .form-control:not(:focus)::placeholder {
+  color: #6c757d; 
+}
+
+.input-group.input-group-outline {
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #d2d6da;
+}
+
+.input-group.input-group-outline .form-control:focus {
+  border-color: #5C4033 !important;
+  box-shadow: 0 0 0 2px rgba(92, 64, 51, 0.2) !important;
+}
+</style>
+{% endblock stylesheets %}
+
+
+{% block title %} Sign IN {% endblock %} 
+{% block body_class %} sign-in-basic {% endblock %} 
+
+
+{% block content %} 
+  {% include 'includes/navigation-transparent.html.' %} 
+  
+  <div class="page-header align-items-start min-vh-100" style="background-image: url('{% static "assets/img/bgl.jpg" %}');" loading="lazy">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container my-auto">
+      <div class="row">
+        <div class="col-lg-4 col-md-8 col-12 mx-auto">
+          <div class="card z-index-0 fadeIn3 fadeInBottom">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-brown shadow-brown border-radius-lg py-3 pe-1" style="background: linear-gradient(45deg, #5C4033, #8B4513);">
+                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                  Restaurant Kitchen Manager
+                </h4>
+                <div class="row mt-3">
+                  <p class="mb-0 text-white text-center">
+                    {% if msg %}
+                      {{ msg | safe }}
+                    {% else %}
+                      Sign in to continue
+                    {% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <form role="form" method="post" action="" class="text-start">
+                {% csrf_token %}
+
+                <div class="input-group input-group-outline mb-3">
+  {{ form.username|add_class:"form-control"|attr:"placeholder:Username" }}
+</div>
+<div class="input-group input-group-outline mb-3">
+  {{ form.password|add_class:"form-control"|attr:"placeholder:Password" }}
+</div>
+                <div class="form-check form-switch d-flex align-items-center mb-3">
+                  <input class="form-check-input" type="checkbox" id="rememberMe">
+                  <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember me</label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" name="login" class="btn bg-gradient-brown w-100 my-4 mb-2" style="background: linear-gradient(45deg, #5C4033, #8B4513); color: white; border: none;">
+                    Sign in
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% include 'includes/footer-auth.html' %} 
+  </div>
+{% endblock content %} 
+
+{% block javascripts %}{% include "includes/scripts.html" %} {% endblock javascripts %}

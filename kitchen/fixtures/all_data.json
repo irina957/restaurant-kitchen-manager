@@ -1,0 +1,239 @@
+[
+{
+  "model": "kitchen.dishtype",
+  "pk": 1,
+  "fields": {
+    "name": "Biscuits"
+  }
+},
+{
+  "model": "kitchen.dishtype",
+  "pk": 2,
+  "fields": {
+    "name": "Pasta"
+  }
+},
+{
+  "model": "kitchen.dishtype",
+  "pk": 3,
+  "fields": {
+    "name": "Pizza"
+  }
+},
+{
+  "model": "kitchen.dishtype",
+  "pk": 4,
+  "fields": {
+    "name": "Soups"
+  }
+},
+{
+  "model": "kitchen.dishtype",
+  "pk": 5,
+  "fields": {
+    "name": "Salads"
+  }
+},
+{
+  "model": "kitchen.dishtype",
+  "pk": 6,
+  "fields": {
+    "name": "Bread"
+  }
+},
+{
+  "model": "kitchen.dishtype",
+  "pk": 7,
+  "fields": {
+    "name": "Cakes"
+  }
+},
+{
+  "model": "kitchen.cook",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$ko6T54bf8DE4mVJtaAOF54$rvYv+jEEeXnEvVsuPXOkeA28DX21CuztHwfylKdgNww=",
+    "last_login": "2025-09-20T11:35:41.027Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@admin.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-09-20T11:35:10.889Z",
+    "years_of_experience": 0,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "kitchen.cook",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$SyDNIkTlZWpML77WllrEoQ$arfB0CiU3fCgAgu9iPvD4yGyilQdw29hbSIUeiRD9Ko=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "chef_marco_italy",
+    "first_name": "Marco",
+    "last_name": "Rossi",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-09-20T14:59:58.563Z",
+    "years_of_experience": 15,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "kitchen.cook",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$sxOhyB0PEYCWwMLKZwZnv8$nXahWGeGVy0bXdtMOm9PlYSVfsP01Pzl3lWFg+ph9ig=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "ukrainian_chef_olena",
+    "first_name": "Olena",
+    "last_name": "Petrenko",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-09-20T15:00:30.037Z",
+    "years_of_experience": 8,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "kitchen.cook",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$ZMnyoElWwBhM7XzvTJlcLo$z2/fcG1PpcMJqyZWG1E0WxlvFBefDQfptaowSYFQXtc=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "pastry_chef_anna",
+    "first_name": "Anna",
+    "last_name": "Muller",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-09-20T15:00:58Z",
+    "years_of_experience": 7,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "kitchen.cook",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$MPA6KcrGRI0neVw0SpipbS$Gv0loM6VVf7iLH2cVYu1xqhj+JK9BI9e38t9pp4YpGA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "master_baker_mike",
+    "first_name": "Mike",
+    "last_name": "Johnson",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-09-20T15:08:10.418Z",
+    "years_of_experience": 12,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 1,
+  "fields": {
+    "name": "Margherita",
+    "description": "Traditional Italian pizza with San Marzano tomatoes, fresh mozzarella, basil, and extra virgin olive oil. Cooked in a wood-fired oven.",
+    "price": "14.99",
+    "dish_type": 3,
+    "cooks": [
+      2
+    ]
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 2,
+  "fields": {
+    "name": "Spaghetti Carbonara",
+    "description": "Authentic Roman pasta with eggs, Pecorino Romano cheese, pancetta, and black pepper. Creamy without cream!",
+    "price": "16.50",
+    "dish_type": 2,
+    "cooks": [
+      2
+    ]
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 3,
+  "fields": {
+    "name": "Red Velvet Cake",
+    "description": "Moist red velvet layers with cream cheese frosting and white chocolate shavings. Perfect balance of sweet and tangy.",
+    "price": "9.75",
+    "dish_type": 7,
+    "cooks": [
+      5,
+      4
+    ]
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 4,
+  "fields": {
+    "name": "Garlic Herb Focaccia",
+    "description": "Freshly baked focaccia bread with rosemary, garlic, sea salt, and olive oil. Perfect for dipping.",
+    "price": "5.25",
+    "dish_type": 6,
+    "cooks": [
+      5
+    ]
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 5,
+  "fields": {
+    "name": "Greek Salad",
+    "description": "Fresh cucumbers, tomatoes, red onions, Kalamata olives, and feta cheese with oregano dressing.",
+    "price": "11.50",
+    "dish_type": 5,
+    "cooks": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 6,
+  "fields": {
+    "name": "Creamy Mushroom Soup",
+    "description": "Wild mushroom blend in creamy broth with thyme, garlic, and a touch of white wine. Topped with croutons.",
+    "price": "8.99",
+    "dish_type": 4,
+    "cooks": [
+      3
+    ]
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 7,
+  "fields": {
+    "name": "Buttermilk Biscuits",
+    "description": "Flaky, buttery biscuits made with real buttermilk. Served warm with honey butter.",
+    "price": "6.50",
+    "dish_type": 1,
+    "cooks": [
+      5
+    ]
+  }
+}
+]

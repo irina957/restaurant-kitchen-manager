@@ -1,0 +1,133 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Dish: {{ dish.name }}{% endblock %}
+
+{% block stylesheets %}
+<style>
+.card {
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  background-color: #f7f7f7;
+}
+
+.card-header h4 {
+  color: #8B6F5A;
+  font-weight: 700;
+}
+
+.list-group-item {
+  font-size: 0.95rem;
+}
+
+.btn-update {
+  background-color: #8B6F5A;
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-update:hover {
+  background-color: #A48268;
+}
+
+.btn-delete {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-delete:hover {
+  background-color: #c9302c;
+}
+
+.btn-assign {
+  background-color: #8B6F5A;
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-assign:hover {
+  background-color: #A48268;
+}
+
+.btn-remove {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-remove:hover {
+  background-color: #c9302c;
+}
+
+.hr-divider {
+  border-top: 1px solid #dee2e6;
+  margin: 0.5rem 0;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/navigation.html" %}
+
+<div class="container py-5 mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+
+      <div class="card">
+        <div class="card-header px-4 py-3 d-flex justify-content-between align-items-center">
+          <h4 class="mb-0">Dish: {{ dish.name }}</h4>
+        </div>
+
+        <div class="card-body px-4 py-4">
+          <p><strong>Description:</strong> {{ dish.description }}</p>
+          <p><strong>Price:</strong> {{ dish.price }}</p>
+          <p><strong>Dish type:</strong> {{ dish.dish_type }}</p>
+
+          <h5 class="mt-4">Cooks:</h5>
+          {% if dish.cooks.all %}
+            <ul class="list-group mb-3">
+              {% for cook in dish.cooks.all %}
+                <li class="list-group-item">
+                  {{ cook.first_name }} {{ cook.last_name }} (ID: {{ cook.id }})
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted">No cooks found</p>
+          {% endif %}
+
+          <div class="mb-3">
+            {% if user in dish.cooks.all %}
+              <form action="{% url 'kitchen:remove-me' dish.pk %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-remove">Delete me from this dish</button>
+              </form>
+            {% else %}
+              <form action="{% url 'kitchen:assign-me' dish.pk %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-assign">Assign me to this dish</button>
+              </form>
+            {% endif %}
+          </div>
+
+          <div class="mt-3 d-flex gap-2">
+            <a href="{% url 'kitchen:dish-update' dish.id %}" class="btn btn-update">Update</a>
+            <a href="{% url 'kitchen:dish-delete' dish.id %}" class="btn btn-delete">Delete</a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

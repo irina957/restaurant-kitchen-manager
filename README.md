@@ -7,6 +7,12 @@
 This project helps restaurant managers organize their kitchen efficiently -  
 you can manage cooks, add dishes and types, view prices, and browse through data easily with search and pagination.
 
+## Check out the live version of the app:  
+[🔗 Visit the Restaurant Kitchen Manager app ](https://restaurant-kitchen-manager-qg1f.onrender.com)
+
+You can log in with the following test user account:  
+* Username: admin
+* Password: 1qazcde3
 
 ## Features
 
@@ -66,12 +72,6 @@ python manage.py loaddata kitchen/fixtures/all_data.json
 ```shell
 python manage.py runserver
 ```
-7.Enter account:
-
->After loading the fixtures, you can log in using the demo account:
-
-* Username: admin
-* Password: 1qazcde3
 
 ### Database structure
 ![DB Structure](static/assets/img/db_structure.png)

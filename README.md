@@ -41,7 +41,7 @@ A quick guide to set up and run the project locally.
 1.Clone the repository:
 
 ```shell
-git clone https://github.com/your-username/restaurant-kitchen-manager.git
+git clone https://github.com/irina957/restaurant-kitchen-manager.git
 cd restaurant-kitchen-manager
 ```
 2.Create a virtual environment:
@@ -75,4 +75,5 @@ python manage.py runserver
 
 ### Database structure
 ![DB Structure](static/assets/img/db_structure.png)
+
 
